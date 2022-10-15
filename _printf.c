@@ -3,6 +3,7 @@
 #include "main.h"
 
 int p_char(va_list args);
+int p_str(va_list args);
 
 /**
  * _printf - Produce output according to specified
@@ -17,7 +18,8 @@ int _printf(const char *format, ...)
 	va_list arg_param;
 
 	args_t types[] = {
-		{'c', p_char}
+		{'c', p_char},
+		{'c', p_str}
 	};
 
 	if (format == NULL || (format[0] == '%' && format[1] == 0))
@@ -57,4 +59,21 @@ int p_char(va_list args)
 	_putchar(ch);
 
 	return (1);
+}
+
+int p_str(va_list args)
+{
+	int i, j;
+	char n[] = "(null)";
+	char *s = va_arg(args, char *);
+
+	if (s == NULL)
+	{
+		for (i = 0; n[i] != '\0'; i++)
+			_putchar(n[i]);
+		return (6);
+	}
+	for (j = 0; s[j] != '\0'; j++)
+		_putchar(s[j]);
+	return (j);
 }
