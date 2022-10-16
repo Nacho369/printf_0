@@ -99,5 +99,7 @@ int p_str(va_list args)
 	}
 	for (j = 0; s[j] != '\0'; j++)
 		_putchar(s[j]);
+
+	j--;
 	return (j);
 }

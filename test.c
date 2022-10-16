@@ -10,13 +10,13 @@
 int main(void)
 {
 	int len;
-	char *str = "Hello There!";
+	char *str = "World";
 	
 	_printf("\nThis prints a character :  [%c]\n", 'G');
 	_printf("This prints a string :  [%s]\n", str);
 	_printf("This is escape percent [%%]\n\n");
 
-	len = _printf("This is a test! [%s]", str);
+	len = _printf("Hello[%s]", str);
 
 	_printf("\n\n");
 
