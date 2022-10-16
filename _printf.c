@@ -1,79 +1,43 @@
-#include <stdlib.h>
-#include <stdarg.h>
 #include "main.h"
-
-int p_char(va_list args);
-int p_str(va_list args);
-
 /**
- * _printf - Produce output according to specified
- * format
+ * _printf - Print all this parameters
+ * @format: input
  *
- * Return: void
+ * Description: function that prints output
+ *
+ * Return: The output character or num
  */
 int _printf(const char *format, ...)
 {
-	int i, j, len = 0;
+	int x = 0, o_p = 0;
+	char *ptr = (char *) format, *output_p;
+	int (*ptr_func)(va_list, char *, int);
+	va_list vlist;
 
-	va_list arg_param;
-
-	args_t types[] = {
-		{'c', p_char},
-		{'c', p_str}
-	};
-
-	if (format == NULL || (format[0] == '%' && format[1] == 0))
+	if (!format)
 		return (-1);
-
-	va_start(arg_param, format);
-
-	i = 0;
-
-	while (format[i] && format != NULL)
+	va_start(vlist, format);
+	output_p = malloc(sizeof(char) * SIZE);
+	if (!output_p)
+		return (1);
+	while (format[x])
 	{
-		j = 0;
-
-		while (j < 2)
+		if (format[x] != '%')
+			output_p[o_p] = format[x], o_p++;
+		else if (s_trlen(ptr) != 1)
 		{
-			if (format[i] == types[j].ch)
-			{
-				len++;
-				types[j].dt(arg_param);
-			}
-			j++;
+			ptr_func = format_type(++ptr);
+			if (!ptr_func)
+				output_p[o_p] = format[x], o_p++;
+			else
+				o_p = ptr_func(vlist, output_p, o_p), x++;
 		}
-		i++;
+		else
+			o_p = -1;
+		x++, ptr++;
 	}
-
-	_putchar('\n');
-
-	va_end(arg_param);
-
-	return (len);
-}
-
-int p_char(va_list args)
-{
-	int ch = va_arg(args, int);
-
-	_putchar(ch);
-
-	return (1);
-}
-
-int p_str(va_list args)
-{
-	int i, j;
-	char n[] = "(null)";
-	char *s = va_arg(args, char *);
-
-	if (s == NULL)
-	{
-		for (i = 0; n[i] != '\0'; i++)
-			_putchar(n[i]);
-		return (6);
-	}
-	for (j = 0; s[j] != '\0'; j++)
-		_putchar(s[j]);
-	return (j);
+	va_end(vlist);
+	write(1, output_p, o_p);
+	free(output_p);
+	return (o_p);
 }
