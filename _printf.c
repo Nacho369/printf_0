@@ -36,15 +36,16 @@ int _printf(const char *format, ...)
 			i++;
 			len++;
 			if (format[i] == '%')
+			{
 				_putchar('%');
-			len++;
+				len++;
+			}
 
 			for (j = 0; j < 2; j++)
 			{
 				if (format[i] == types[j].ch)
 				{
-					types[j].dt(arg_param);
-					len++;
+					len += types[j].dt(arg_param);
 				}
 			}
 		}
@@ -55,6 +56,13 @@ int _printf(const char *format, ...)
 	return (len);
 }
 
+/**
+ * p_char - Prints character format
+ *
+ * @args: Argument to print
+ *
+ * Return: Lenght of character Printed
+ */
 int p_char(va_list args)
 {
 	int ch = va_arg(args, int);
@@ -64,6 +72,13 @@ int p_char(va_list args)
 	return (1);
 }
 
+/**
+ * p_str - Prints string format
+ *
+ * @args: Argument to print
+ *
+ * Return: Lenght of character printed
+ */
 int p_str(va_list args)
 {
 	int i, j;
