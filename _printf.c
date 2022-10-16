@@ -33,17 +33,14 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			_putchar(format[i]);
-			len++;
+			len += _putchar(format[i]);
 		}
 		else
 		{
 			i++;
-			len++;
 			if (format[i] == '%')
 			{
-				_putchar('%');
-				len++;
+				len += _putchar('%');
 			}
 
 			for (j = 0; j < 2; j++)
@@ -100,6 +97,5 @@ int p_str(va_list args)
 	for (j = 0; s[j] != '\0'; j++)
 		_putchar(s[j]);
 
-	j--;
 	return (j);
 }
