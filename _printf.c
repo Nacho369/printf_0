@@ -22,9 +22,6 @@ int _printf(const char *format, ...)
 		{'s', p_str}
 	};
 
-	if (format == NULL || (format[0] == '%' && format[1] == 0))
-		return (-1);
-
 	va_start(arg_param, format);
 
 	i = 0;
