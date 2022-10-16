@@ -9,6 +9,8 @@ int p_str(va_list args);
  * _printf - Produce output according to specified
  * format
  *
+ * @format: First arguments
+ *
  * Return: void
  */
 int _printf(const char *format, ...)
