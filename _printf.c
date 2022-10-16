@@ -19,33 +19,36 @@ int _printf(const char *format, ...)
 
 	args_t types[] = {
 		{'c', p_char},
-		{'c', p_str}
+		{'s', p_str}
 	};
-
-	if (format == NULL || (format[0] == '%' && format[1] == 0))
-		return (-1);
 
 	va_start(arg_param, format);
 
-	i = 0;
-
-	while (format[i] && format != NULL)
+	for (i = 0; format[i]; i++)
 	{
-		j = 0;
-
-		while (j < 2)
+		if (format[i] != '%')
 		{
-			if (format[i] == types[j].ch)
-			{
-				len++;
-				types[j].dt(arg_param);
-			}
-			j++;
+			_putchar(format[i]);
+			len++;
 		}
-		i++;
-	}
+		else
+		{
+			i++;
+			len++;
+			if (format[i] == '%')
+				_putchar('%');
+			len++;
 
-	_putchar('\n');
+			for (j = 0; j < 2; j++)
+			{
+				if (format[i] == types[j].ch)
+				{
+					types[j].dt(arg_param);
+					len++;
+				}
+			}
+		}
+	}
 
 	va_end(arg_param);
 

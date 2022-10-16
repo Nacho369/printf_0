@@ -13,8 +13,14 @@ int main(void)
     int len2;
     unsigned int ui;
     void *addr;*/
+	char *str = "Hello There!";
 
-    _printf("Let's try to printf a simple sentence.\n");
+    _printf("This prints a character :  %c\n", 'G');
+
+    _printf("This prints a string :  %s\n", str);
+
+    _printf("This is escape percent %%\n");
+
     /*len2 = printf("Let's try to printf a simple sentence.\n");
     ui = (unsigned int)INT_MAX + 1024;
     addr = (void *)0x7ffe637541f0;
