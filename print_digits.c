@@ -11,7 +11,7 @@ int p_digits(va_list args)
 {
 	int i = 0, len = 0, dig, j;
 	unsigned int num, abs;
-	int n = va_arg(args, int);
+	long int n = va_arg(args, long int);
 
 	int *num_arr = malloc(sizeof(*num_arr));
 
@@ -45,6 +45,8 @@ int p_digits(va_list args)
 		_putchar(digit + '0');
 		len++;
 	}
+
+	free(num_arr);
 
 	return (len);
 }
