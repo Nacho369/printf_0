@@ -1,37 +1,46 @@
 #include "main.h"
 
 /**
- * _printf - Produce output according to specified
- * format
- *
- * @format: Character string
- *
- * Return: void
+ * _printf - produces output according to a format
+ * @format: format string containing the characters and the specifiers
+ * Description: this function will call the get_print() function that will
+ * determine which printing function to call depending on the conversion
+ * specifiers contained into fmt
+ * Return: length of the formatted output string
+ * Authors: Ehoneah Obed & Abdulhakeem Badejo
  */
 int _printf(const char *format, ...)
 {
+<<<<<<< HEAD
 	int i, j, count, len = 0;
+=======
+	int (*pfunc)(va_list, flags_t *);
+	const char *p;
+	va_list arguments;
+	flags_t flags = {0, 0, 0};
+>>>>>>> Alafara
 
-	va_list arg_param;
+	register int count = 0;
 
+<<<<<<< HEAD
 	args_t types[] = {
 		{'c', p_char},
 		{'s', p_str}
 	};
 
 	if (format == NULL || (format[0] == '%' && format[1] == 0))
+=======
+	va_start(arguments, format);
+	if (!format || (format[0] == '%' && !format[1]))
+>>>>>>> Alafara
 		return (-1);
-
-	va_start(arg_param, format);
-
-	i = 0;
-
-	while (format != NULL && format[i])
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (p = format; *p; p++)
 	{
-		if (format[i] != '%')
-			len += _putchar(format[i]);
-		else
+		if (*p == '%')
 		{
+<<<<<<< HEAD
 			i++;
 			if (format[i] == '%')
 				len += _putchar('%');
@@ -56,7 +65,24 @@ int _printf(const char *format, ...)
 			}
 		}
 		i++;
+=======
+			p++;
+			if (*p == '%')
+			{
+				count += _putchar('%');
+				continue;
+			}
+			while (get_flag(*p, &flags))
+				p++;
+			pfunc = get_print(*p);
+			count += (pfunc)
+				? pfunc(arguments, &flags)
+				: _printf("%%%c", *p);
+		} else
+			count += _putchar(*p);
+>>>>>>> Alafara
 	}
-	va_end(arg_param);
-	return (len);
+	_putchar(-1);
+	va_end(arguments);
+	return (count);
 }
