@@ -4,16 +4,17 @@
  * _printf - Produce output according to specified
  * format
  *
+ * @format: Character string
+ *
  * Return: void
  */
 int _printf(const char *format, ...)
 {
 	int i = 0, j, len = 0, count;
 	va_list valist;
-	types difftypes[] = {{'c', t_char}, {'s', t_string}, {'d', print_number},
-			     {'i', print_number}, {'b', binary}, {'u', print_unsigned},
-			     {'x', hexa}, {'X', hexa_upper}, {'o', octal}, {'R', print_rot},
-			     {'r', print_rev}, {'S', stringhexa}, {'p', pointer}};
+	args_t difftypes[] = {
+		{'c', p_char}, {'s', p_str}
+	};
 
 	if (format == NULL || (format[0] == '%' && format[1] == 0))
 		return (-1);
@@ -31,9 +32,9 @@ int _printf(const char *format, ...)
 			count = 0;
 			while (j < 13)
 			{
-				if (format[i] == difftypes[j].t)
+				if (format[i] == difftypes[j].ch)
 				{
-					len += difftypes[j].f(valist);
+					len += difftypes[j].dt(valist);
 					count = 1;
 					break; }
 				j++; }
