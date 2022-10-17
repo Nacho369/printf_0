@@ -2,19 +2,29 @@
 #include <stdarg.h>
 #include "main.h"
 
+<<<<<<< HEAD
 int p_char(va_list args);
 int p_str(va_list args);
+=======
+
+int check(const char *format, int count, int i);
+>>>>>>> 53b76cc55c5030a77e336941459f0da8a1377812
 
 /**
  * _printf - Produce output according to specified
  * format
  *
+<<<<<<< HEAD
  * @format: First arguments
+=======
+ * @format: Character string
+>>>>>>> 53b76cc55c5030a77e336941459f0da8a1377812
  *
  * Return: void
  */
 int _printf(const char *format, ...)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	int i, j, count, len = 0;
@@ -34,6 +44,11 @@ int _printf(const char *format, ...)
 	va_list arg_param;
 
 >>>>>>> Alafara
+=======
+	int i = 0, j, count, len = 0;
+	va_list arg_param;
+
+>>>>>>> 53b76cc55c5030a77e336941459f0da8a1377812
 	args_t types[] = {
 		{'c', p_char},
 		{'s', p_str}
@@ -41,11 +56,8 @@ int _printf(const char *format, ...)
 
 <<<<<<< HEAD
 	if (format == NULL || (format[0] == '%' && format[1] == 0))
-=======
-	va_start(arguments, format);
-	if (!format || (format[0] == '%' && !format[1]))
->>>>>>> Alafara
 		return (-1);
+<<<<<<< HEAD
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
 	for (p = format; *p; p++)
@@ -64,6 +76,17 @@ int _printf(const char *format, ...)
 		{
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+
+	va_start(arg_param, format);
+
+	while (format != NULL && format[i])
+	{
+		if (format[i] != '%')
+			len += _putchar(format[i]);
+		else
+		{
+>>>>>>> 53b76cc55c5030a77e336941459f0da8a1377812
 			i++;
 			if (format[i] == '%')
 				len += _putchar('%');
@@ -79,15 +102,10 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-			if (!count && format[i] != '%')
-			{
-				len++;
-				len++;
-				_putchar('%');
-				_putchar(format[i]);
-			}
+			len += check(format, count, i);
 		}
 		i++;
+<<<<<<< HEAD
 =======
 			p++;
 			if (*p == '%')
@@ -166,4 +184,32 @@ int p_str(va_list args)
 	for (j = 0; s[j] != '\0'; j++)
 		_putchar(s[j]);
 	return (j);
+=======
+	}
+	va_end(arg_param);
+	return (len);
+}
+/**
+ * check - Check requirement
+ *
+ * @format: Character string
+ * @count: Check value
+ * @i: integer iteration
+ *
+ * Return: len
+ */
+int check(const char *format, int count, int i)
+{
+	int len = 0;
+
+	if (!count && format[i] != '%')
+	{
+		len++;
+		len++;
+		_putchar('%');
+		_putchar(format[i]);
+	}
+
+	return (len);
+>>>>>>> 53b76cc55c5030a77e336941459f0da8a1377812
 }
