@@ -18,7 +18,7 @@ int main(void)
 
 	_printf("My Printf; \n");
 
-	len = _printf("Hello[%s]", str);
+	len = _printf();
 
 	printf("%d\n\n", len);
 
