@@ -1,48 +1,99 @@
+#include <stdlib.h>
+#include <stdarg.h>
 #include "main.h"
 
+int p_char(va_list args);
+int p_str(va_list args);
+
 /**
- * _printf - produces output according to a format
- * @format: format string containing the characters and the specifiers
- * Description: this function will call the get_print() function that will
- * determine which printing function to call depending on the conversion
- * specifiers contained into fmt
- * Return: length of the formatted output string
- * Authors: Ehoneah Obed & Abdulhakeem Badejo
+ * _printf - Produce output according to specified
+ * format
+ *
+ * @format: First arguments
+ *
+ * Return: void
  */
 int _printf(const char *format, ...)
 {
-	int (*pfunc)(va_list, flags_t *);
-	const char *p;
-	va_list arguments;
-	flags_t flags = {0, 0, 0};
+	int i, j, len = 0;
 
-	register int count = 0;
+	va_list arg_param;
 
-	va_start(arguments, format);
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	for (p = format; *p; p++)
+	args_t types[] = {
+		{'c', p_char},
+		{'s', p_str}
+	};
+
+	va_start(arg_param, format);
+
+	for (i = 0; format[i]; i++)
 	{
-		if (*p == '%')
+		if (format[i] != '%')
 		{
-			p++;
-			if (*p == '%')
+			_putchar(format[i]);
+			len++;
+		}
+		else
+		{
+			i++;
+			len++;
+			if (format[i] == '%')
 			{
-				count += _putchar('%');
-				continue;
+				_putchar('%');
+				len++;
 			}
-			while (get_flag(*p, &flags))
-				p++;
-			pfunc = get_print(*p);
-			count += (pfunc)
-				? pfunc(arguments, &flags)
-				: _printf("%%%c", *p);
-		} else
-			count += _putchar(*p);
+
+			for (j = 0; j < 2; j++)
+			{
+				if (format[i] == types[j].ch)
+				{
+					len += types[j].dt(arg_param);
+				}
+			}
+		}
 	}
-	_putchar(-1);
-	va_end(arguments);
-	return (count);
+
+	va_end(arg_param);
+
+	return (len);
+}
+
+/**
+ * p_char - Prints character format
+ *
+ * @args: Argument to print
+ *
+ * Return: Lenght of character Printed
+ */
+int p_char(va_list args)
+{
+	int ch = va_arg(args, int);
+
+	_putchar(ch);
+
+	return (1);
+}
+
+/**
+ * p_str - Prints string format
+ *
+ * @args: Argument to print
+ *
+ * Return: Lenght of character printed
+ */
+int p_str(va_list args)
+{
+	int i, j;
+	char n[] = "(null)";
+	char *s = va_arg(args, char *);
+
+	if (s == NULL)
+	{
+		for (i = 0; n[i] != '\0'; i++)
+			_putchar(n[i]);
+		return (6);
+	}
+	for (j = 0; s[j] != '\0'; j++)
+		_putchar(s[j]);
+	return (j);
 }
