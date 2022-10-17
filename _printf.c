@@ -1,5 +1,8 @@
 #include "main.h"
 
+
+int check(const char *format, int count, int i);
+
 /**
  * _printf - Produce output according to specified
  * format
@@ -10,8 +13,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, j, count, len = 0;
-
+	int i = 0, j, count, len = 0;
 	va_list arg_param;
 
 	args_t types[] = {
@@ -23,8 +25,6 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	va_start(arg_param, format);
-
-	i = 0;
 
 	while (format != NULL && format[i])
 	{
@@ -47,16 +47,33 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-			if (!count && format[i] != '%')
-			{
-				len++;
-				len++;
-				_putchar('%');
-				_putchar(format[i]);
-			}
+			len += check(format, count, i);
 		}
 		i++;
 	}
 	va_end(arg_param);
+	return (len);
+}
+/**
+ * check - Check requirement
+ *
+ * @format: Character string
+ * @count: Check value
+ * @i: integer iteration
+ *
+ * Return: len
+ */
+int check(const char *format, int count, int i)
+{
+	int len = 0;
+
+	if (!count && format[i] != '%')
+	{
+		len++;
+		len++;
+		_putchar('%');
+		_putchar(format[i]);
+	}
+
 	return (len);
 }
