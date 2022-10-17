@@ -10,15 +10,22 @@
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, j, len = 0, count;
-	va_list valist;
-	args_t difftypes[] = {
-		{'c', p_char}, {'s', p_str}
+	int i, j, len = 0;
+
+	va_list arg_param;
+
+	args_t types[] = {
+		{'c', p_char},
+		{'s', p_str}
 	};
 
-	if (format == NULL || (format[0] == '%' && format[1] == 0))
+	if (format == NULL)
 		return (-1);
-	va_start(valist, format);
+
+	va_start(arg_param, format);
+
+	i = 0;
+
 	while (format != NULL && format[i])
 	{
 		if (format[i] != '%')
@@ -28,23 +35,18 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '%')
 				len += _putchar('%');
-			j = 0;
-			count = 0;
-			while (j < 13)
+
+			for (j = 0; j < 2; j++)
 			{
-				if (format[i] == difftypes[j].ch)
+				if (format[i] == types[j].ch)
 				{
-					len += difftypes[j].dt(valist);
-					count = 1;
-					break; }
-				j++; }
-			if (!count && format[i] != '%')
-			{
-				len++;
-				len++;
-				_putchar('%');
-				_putchar(format[i]); }}
-		i++; }
-	va_end(valist);
+					len += types[j].dt(arg_param);
+					break;
+				}
+			}
+		}
+		i++;
+	}
+	va_end(arg_param);
 	return (len);
 }

@@ -11,7 +11,7 @@ int main(void)
 {
 	int len, len2;
 	char *str = "World";
-	
+
 	_printf("\nThis prints a character :  [%c]\n", 'G');
 	_printf("This prints a string :  [%s]\n", str);
 	_printf("This is escape percent [%%]\n\n");
@@ -27,6 +27,6 @@ int main(void)
 	len2 = printf("Hello[%s]", str);
 
 	printf("%d\n\n", len2);
-	
+
 	return (0);
 }
