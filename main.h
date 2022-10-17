@@ -27,4 +27,6 @@ int p_char(va_list args);
 
 int p_str(va_list args);
 
+int p_digits(va_list args);
+
 #endif
