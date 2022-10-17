@@ -46,8 +46,6 @@ int p_digits(va_list args)
 		len++;
 	}
 
-	free(num_arr);
-
 	return (len);
 }
 
