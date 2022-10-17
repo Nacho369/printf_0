@@ -3,12 +3,7 @@
 
 #include <stdarg.h>
 #include <stdlib.h>
-
-/* Main Functions */
-int _putchar(char c);
-
-int _printf(const char *format, ...);
-
+#include <unistd.h>
 
 /**
 * struct arg_types - Struct op
@@ -22,7 +17,12 @@ typedef struct arg_types
 	int (*dt)(va_list args);
 } args_t;
 
-/* Format Printers */
+
+/* Functions Prototypes */
+int _printf(const char *format, ...);
+
+int _putchar(char c);
+
 int p_char(va_list args);
 
 int p_str(va_list args);
