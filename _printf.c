@@ -17,8 +17,7 @@ int _printf(const char *format, ...)
 	va_list arg_param;
 
 	args_t types[] = {
-		{'c', p_char},
-		{'s', p_str}
+		{'c', p_char}, {'s', p_str}, {'d', p_digits}, {'i', p_digits}
 	};
 
 	if (format == NULL || (format[0] == '%' && format[1] == 0))
@@ -38,7 +37,7 @@ int _printf(const char *format, ...)
 
 			count = 0;
 
-			for (j = 0; j < 2; j++)
+			for (j = 0; j < 4; j++)
 			{
 				if (format[i] == types[j].ch)
 				{
