@@ -10,7 +10,7 @@
 int p_digits(va_list args)
 {
 	int i = 0, len = 0, dig, j;
-	unsigned long int num, abs;
+	unsigned int num, abs;
 	int n = va_arg(args, int);
 
 	int *num_arr = malloc(sizeof(*num_arr));
@@ -47,4 +47,32 @@ int p_digits(va_list args)
 	}
 
 	return (len);
+}
+
+/**
+ * _isdigit - Verifies if a char is a digit
+ * @c: Char to be evaluated
+ *
+ * Return: 1 if c is a digit, 0 otherwise
+ */
+int _isdigit(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+
+	return (0);
+}
+
+/**
+ * _isprintable - Evaluates if a char is printable
+ * @c: Char to be evaluated.
+ *
+ * Return: 1 if c is printable, 0 otherwise
+ */
+int _isprintable(char c)
+{
+	if (c >= 32 && c < 127)
+		return (1);
+
+	return (0);
 }
