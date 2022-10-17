@@ -157,5 +157,5 @@ int p_str(va_list args)
 		_putchar(s[j]);
 
 	return (j);
->>>>>>> 577c5428389078bd1473433d7ca0821f03e1a930
+>>>>>>> 
 }
