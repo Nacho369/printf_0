@@ -1,43 +1,86 @@
+#include <stdarg.h>
 #include "main.h"
+#include <stddef.h>
+
 /**
- * _printf - Print all this parameters
- * @format: input
- *
- * Description: function that prints output
- *
- * Return: The output character or num
+ * get_op - select function for conversion char
+ * @c: char to check
+ * Return: pointer to function
  */
+
+int (*get_op(const char c))(va_list)
+{
+	int i = 0;
+
+	flags_p fp[] = {
+		{"c", print_char},
+		{"s", print_str},
+		{"i", print_nbr},
+		{"d", print_nbr},
+		{"b", print_binary},
+		{"o", print_octal},
+		{"x", print_hexa_lower},
+		{"X", print_hexa_upper},
+		{"u", print_unsigned},
+		{"S", print_str_unprintable},
+		{"r", print_str_reverse},
+		{"p", print_ptr},
+		{"R", print_rot13},
+		{"%", print_percent}
+	};
+	while (i < 14)
+	{
+		if (c == fp[i].c[0])
+		{
+			return (fp[i].f);
+		}
+		i++;
+	}
+	return (NULL);
+}
+
+/**
+ * _printf - Reproduce behavior of printf function
+ * @format: format string
+ * Return: value of printed chars
+ */
+
 int _printf(const char *format, ...)
 {
-	int x = 0, o_p = 0;
-	char *ptr = (char *) format, *output_p;
-	int (*ptr_func)(va_list, char *, int);
-	va_list vlist;
+	va_list ap;
+	int sum = 0, i = 0;
+	int (*func)();
 
-	if (!format)
+	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-	va_start(vlist, format);
-	output_p = malloc(sizeof(char) * SIZE);
-	if (!output_p)
-		return (1);
-	while (format[x])
+	va_start(ap, format);
+
+	while (format[i])
 	{
-		if (format[x] != '%')
-			output_p[o_p] = format[x], o_p++;
-		else if (s_trlen(ptr) != 1)
+		if (format[i] == '%')
 		{
-			ptr_func = format_type(++ptr);
-			if (!ptr_func)
-				output_p[o_p] = format[x], o_p++;
+			if (format[i + 1] != '\0')
+				func = get_op(format[i + 1]);
+			if (func == NULL)
+			{
+				_putchar(format[i]);
+				sum++;
+				i++;
+			}
 			else
-				o_p = ptr_func(vlist, output_p, o_p), x++;
+			{
+				sum += func(ap);
+				i += 2;
+				continue;
+			}
 		}
 		else
-			o_p = -1;
-		x++, ptr++;
+		{
+			_putchar(format[i]);
+			sum++;
+			i++;
+		}
 	}
-	va_end(vlist);
-	write(1, output_p, o_p);
-	free(output_p);
-	return (o_p);
+	va_end(ap);
+	return (sum);
 }
