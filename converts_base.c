@@ -73,7 +73,7 @@ int dec_to_oct(va_list args)
  */
 int dec_to_hex(va_list args)
 {
-	int i, j, rem = 0, len = 0;
+	int i, j, rem, len = 0;
 	unsigned int num;
 	int hex_arr[256];
 
@@ -81,8 +81,8 @@ int dec_to_hex(va_list args)
 
 	if (num == 0)
 	{
-		_putchar('0');
-		return (1);
+		len += _putchar(num);
+		return (len);
 	}
 
 	for (i = 0; num != 0; i++)
@@ -118,7 +118,7 @@ int dec_to_hex(va_list args)
  */
 int dec_to_HEX(va_list args)
 {
-	int i, j, rem = 0, len = 0;
+	int i, j, rem, len = 0;
 	unsigned int num;
 	int HEX_arr[256];
 
@@ -126,8 +126,8 @@ int dec_to_HEX(va_list args)
 
 	if (num == 0)
 	{
-		_putchar('0');
-		return (1);
+		len += _putchar(num);
+		return (len);
 	}
 
 	for (i = 0; num != 0; i++)
