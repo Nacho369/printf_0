@@ -49,6 +49,7 @@ int p_str(va_list args)
  *
  * Return: Lenght of argument to print
  */
+/*
 int p_str_np(va_list args)
 {
 	int i;
@@ -62,4 +63,4 @@ int p_str_np(va_list args)
 			_puts(str)
 		}
 	}
-}
+}*/

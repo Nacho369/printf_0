@@ -15,8 +15,6 @@ int main(void)
 
 	_printf("Unsigned Octal:[%o]\n\n", ui);*/
 
-	printf("Unsigned Hexadecimal:[%x %X]\n\n", ui, ui);
-
 	_printf("Unsigned Hexadecimal:[%x]\n\n", ui);
 	_printf("Unsigned Hexadecimal:[%X]\n\n", ui);
 
