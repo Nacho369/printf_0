@@ -82,7 +82,7 @@ int dec_to_hex(va_list args)
 	if (num == 0)
 		len += _putchar('0');
 
-	for (i = 0; num != 0; i++)
+	for (i = 0; num > 0; i++)
 	{
 		rem = num % 16;
 
@@ -124,7 +124,7 @@ int dec_to_HEX(va_list args)
 	if (num == 0)
 		len += _putchar('0');
 
-	for (i = 0; num != 0; i++)
+	for (i = 0; num > 0; i++)
 	{
 		rem = num % 16;
 
