@@ -14,10 +14,12 @@ int check(const char *format, int count, int i);
 int _printf(const char *format, ...)
 {
 	int i = 0, j, count, len = 0;
+	const int f_len = 5;
 	va_list arg_param;
 
-	args_t types[] = {
-		{'c', p_char}, {'s', p_str}, {'d', p_digits}, {'i', p_digits}
+	args_t types[] = {{'c', p_char}, {'s', p_str},
+			{'d', p_nums}, {'i', p_nums},
+			{'b', dec_to_bin}
 	};
 
 	if (format == NULL || (format[0] == '%' && format[1] == 0))
@@ -37,7 +39,7 @@ int _printf(const char *format, ...)
 
 			count = 0;
 
-			for (j = 0; j < 4; j++)
+			for (j = 0; j < f_len; j++)
 			{
 				if (format[i] == types[j].ch)
 				{
