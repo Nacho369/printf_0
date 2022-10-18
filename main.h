@@ -2,6 +2,7 @@
 #define MAIN_H
 
 #include <stdarg.h>
+#include <limits.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -23,6 +24,8 @@ int _printf(const char *format, ...);
 
 int _putchar(char c);
 
+int print_uns_num(unsigned int n);
+
 int p_char(va_list args);
 
 int p_str(va_list args);
@@ -30,5 +33,7 @@ int p_str(va_list args);
 int p_nums(va_list args);
 
 int dec_to_bin(va_list args);
+
+int p_uns_int(va_list args);
 
 #endif

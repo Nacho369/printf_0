@@ -14,12 +14,12 @@ int check(const char *format, int count, int i);
 int _printf(const char *format, ...)
 {
 	int i = 0, j, count, len = 0;
-	const int f_len = 5;
+	const int f_len = 6;
 	va_list arg_param;
 
 	args_t types[] = {{'c', p_char}, {'s', p_str},
 			{'d', p_nums}, {'i', p_nums},
-			{'b', dec_to_bin}
+			{'b', dec_to_bin}, {'u', p_uns_int}
 	};
 
 	if (format == NULL || (format[0] == '%' && format[1] == 0))

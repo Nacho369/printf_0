@@ -34,3 +34,50 @@ int p_nums(va_list args)
 	return (len);
 }
 
+/**
+ * p_uns_int - Prints Unsigned integers
+ *
+ * @args: Argument to print
+ *
+ * Return: Lenght of characters to be printed
+ */
+int p_uns_int(va_list args)
+{
+	unsigned int num;
+
+	num = va_arg(args, unsigned int);
+
+	if (num < 1)
+		return (-1);
+	if (num == 0)
+		return (print_uns_num(num));
+
+	return (print_uns_num(num));
+}
+
+/**
+ * print_uns_num - Prints an unsigned number
+ *
+ * @n: Argument to print
+ *
+ * Return: Lenght of character to be printed
+ */
+int print_uns_num(unsigned int n)
+{
+	int div = 1, len = 0;
+	unsigned int num;
+
+	num = n;
+
+	for (; num / div > 9; )
+		div *= 10;
+
+	for (; div != 0; )
+	{
+		len += _putchar((num / div) + '0');
+		num %= div;
+		div /= 10;
+	}
+
+	return (len);
+}
