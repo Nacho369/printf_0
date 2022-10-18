@@ -80,10 +80,7 @@ int dec_to_hex(va_list args)
 	num = va_arg(args, unsigned int);
 
 	if (num == 0)
-		len += _putchar('0');
-
-	if (num < 1)
-		return (-1);
+		return (_putchar('0'));
 
 	for (i = 0; num > 0; i++)
 	{
@@ -125,10 +122,7 @@ int dec_to_HEX(va_list args)
 	num = va_arg(args, unsigned int);
 
 	if (num == 0)
-		len += _putchar('0');
-
-	if (num < 1)
-		return (-1);
+		return (_putchar('0'));
 
 	for (i = 0; num > 0; i++)
 	{
