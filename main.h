@@ -24,6 +24,8 @@ int _printf(const char *format, ...);
 
 int _putchar(char c);
 
+int _puts(char *str);
+
 int print_uns_num(unsigned int n);
 
 int hex_check(int num, char case_type);

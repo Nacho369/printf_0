@@ -35,7 +35,7 @@ int p_nums(va_list args)
 }
 
 /**
- * p_uns_int - Prints Unsigned integers
+ * p_uns_num - Prints Unsigned integers
  *
  * @args: Argument to print
  *

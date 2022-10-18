@@ -59,7 +59,7 @@ int p_str_np(va_list args)
 	{
 		if (str[i]  > 0 && (str[i] < 32 || str[i] >= 127))
 		{
-			_putchar
+			_puts(str)
 		}
 	}
 }
