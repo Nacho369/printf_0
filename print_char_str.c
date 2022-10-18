@@ -41,3 +41,25 @@ int p_str(va_list args)
 
 	return (j);
 }
+
+/**
+ * p_str_np - Primys strings format and non printable characters as \x
+ *
+ * @args: Argument to print
+ *
+ * Return: Lenght of argument to print
+ */
+int p_str_np(va_list args)
+{
+	int i;
+	char *str = va_arg(args, char *);
+	int len = 0;
+
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i]  > 0 && (str[i] < 32 || str[i] >= 127))
+		{
+			_putchar
+		}
+	}
+}
