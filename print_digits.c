@@ -9,41 +9,28 @@
  */
 int p_digits(va_list args)
 {
-	int i = 0, len = 0, dig, j;
-	unsigned int num, abs;
+	int  len = 0, div = 1;
+	unsigned int num;
 	int n = va_arg(args, int);
-
-	int *num_arr = malloc(sizeof(*num_arr));
 
 	if (n < 0)
 	{
-		_putchar('-');
-		len++;
-		abs = -n;
+		len += _putchar('-');
+		num = -n;
 	}
 	else
 	{
-		abs = n;
+		num = n;
 	}
 
-	num = abs;
+	for (; num / div > 9; )
+		div *= 10;
 
 	while (num != 0)
 	{
-		dig = num % 10;
-
-		num_arr[i] = dig;
-		i++;
-
-		num = num / 10;
-	}
-
-	for (j = i - 1; j > -1; j--)
-	{
-		int digit = num_arr[j];
-
-		_putchar(digit + '0');
-		len++;
+		len += _putchar('0' + num / div);
+		num %= div;
+		div /= 10;
 	}
 
 	return (len);
