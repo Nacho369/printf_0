@@ -17,7 +17,7 @@ int dec_to_bin(va_list args)
 	num = va_arg(args, unsigned int);
 
 	if (num == 0)
-		len += _putchar('0');
+		return (_putchar('0'));
 
 	for (i = 0; num > 0; i++)
 	{
@@ -48,7 +48,7 @@ int dec_to_oct(va_list args)
 	num = va_arg(args, unsigned int);
 
 	if (num == 0)
-		len += _putchar('0');
+		return (_putchar('0'));
 
 	for (i = 0; num > 0; i++)
 	{
