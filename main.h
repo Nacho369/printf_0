@@ -36,4 +36,6 @@ int dec_to_bin(va_list args);
 
 int p_uns_int(va_list args);
 
+int dec_to_oct(va_list args);
+
 #endif
