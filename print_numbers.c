@@ -41,14 +41,12 @@ int p_nums(va_list args)
  *
  * Return: Lenght of characters to be printed
  */
-int p_uns_int(va_list args)
+int p_uns_num(va_list args)
 {
 	unsigned int num;
 
 	num = va_arg(args, unsigned int);
 
-	if (num < 1)
-		return (-1);
 	if (num == 0)
 		return (print_uns_num(num));
 

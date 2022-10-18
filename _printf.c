@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 	args_t types[] = {
 		{'c', p_char}, {'s', p_str},
 		{'d', p_nums}, {'i', p_nums},
-		{'b', dec_to_bin}, {'u', p_uns_int},
+		{'b', dec_to_bin}, {'u', p_uns_num},
 		{'o', dec_to_oct}, {'x', dec_to_hex},
 		{'X', dec_to_HEX}
 	};
