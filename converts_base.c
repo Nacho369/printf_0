@@ -19,9 +19,6 @@ int dec_to_bin(va_list args)
 	if (num == 0)
 		len += _putchar('0');
 
-	if (num < 1)
-		return (-1);
-
 	for (i = 0; num > 0; i++)
 	{
 		bin_arr[i] = num % 2;
