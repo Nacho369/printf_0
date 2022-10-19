@@ -15,7 +15,7 @@ char *convert_base(unsigned int num, int base, int case_type)
 {
 	int i, rem;
 	static char hex_arr[256];
-	char *ptr = NULL;
+	char *ptr;
 
 	for (i = 0; num > 0; i++)
 	{
