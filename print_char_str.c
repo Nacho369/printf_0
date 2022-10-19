@@ -56,17 +56,11 @@ int p_str_np(va_list args)
 	char *str = va_arg(args, char *);
 	char *result;
 
-	if (str == NULL)
-	{
-		len += _puts("(null)");
-	}
-
 	for (i = 0; str[i]; i++)
 	{
 		if (str[i]  > 0 && (str[i] < 32 || str[i] >= 127))
 		{
-			_puts("\\x");
-			len++;
+			len += _puts("\\x");
 			result = convert_base(str[i], 16, 0);
 
 			dig = str[i];
