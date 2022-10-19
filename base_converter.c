@@ -17,9 +17,6 @@ char *convert_base(unsigned int num, int base, int case_type)
 	static char hex_arr[256];
 	char *ptr = NULL;
 
-	if (num == 0)
-		return (ptr);
-
 	for (i = 0; num > 0; i++)
 	{
 		rem = num % base;
