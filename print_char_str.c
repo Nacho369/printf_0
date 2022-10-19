@@ -63,7 +63,8 @@ int p_str_np(va_list args)
 			len += _puts("\\x");
 			result = convert_base(str[i], 16, 0);
 
-			if (!result[1])
+			if ((result[i] >= 0 && result[i] < 10) &&
+			(result[i] >= 'A' && result[i] < 'G'))
 				len += _putchar('0');
 
 			len += _puts(result);
