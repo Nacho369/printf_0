@@ -56,11 +56,6 @@ int p_str_np(va_list args)
 	char *str = va_arg(args, char *);
 	char *result;
 
-	if (str == NULL)
-	{
-		_puts("(null)");
-	}
-
 	for (i = 0; str[i]; i++)
 	{
 		if (str[i]  > 0 && (str[i] < 32 || str[i] >= 127))
