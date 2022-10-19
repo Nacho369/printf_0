@@ -58,7 +58,7 @@ int p_str_np(va_list args)
 
 	if (str == NULL)
 	{
-		_puts("(null)");
+		len += _puts("(null)");
 	}
 
 	for (i = 0; str[i]; i++)
