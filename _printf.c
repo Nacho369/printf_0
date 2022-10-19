@@ -14,7 +14,7 @@ int check(const char *format, int count, int i);
 int _printf(const char *format, ...)
 {
 	int i = 0, j, count, len = 0;
-	const int f_len = 9;
+	const int f_len = 10;
 	va_list arg_param;
 
 	args_t types[] = {
@@ -22,7 +22,7 @@ int _printf(const char *format, ...)
 		{'d', p_nums}, {'i', p_nums},
 		{'b', dec_to_bin}, {'u', p_uns_num},
 		{'o', dec_to_oct}, {'x', dec_to_hex},
-		{'X', dec_to_HEX}
+		{'X', dec_to_HEX}, {'S', p_str_np}
 	};
 
 	if (format == NULL || (format[0] == '%' && format[1] == 0))

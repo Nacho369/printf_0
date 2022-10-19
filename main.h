@@ -26,6 +26,8 @@ int _putchar(char c);
 
 int _puts(char *str);
 
+char *convert_base(unsigned int num, int base, int case_type);
+
 int print_uns_num(unsigned int n);
 
 int hex_check(int num, char case_type);
@@ -33,6 +35,8 @@ int hex_check(int num, char case_type);
 int p_char(va_list args);
 
 int p_str(va_list args);
+
+int p_str_np(va_list args);
 
 int p_nums(va_list args);
 
