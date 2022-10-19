@@ -54,19 +54,15 @@ int p_str_np(va_list args)
 	int i, len = 0;
 	unsigned int dig;
 	char *str = va_arg(args, char *);
+	char *reversed_arr;
 	char *result;
-
-	if (str == NULL)
-	{
-		len += _puts("(null)");
-	}
 
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i]  > 0 && (str[i] < 32 || str[i] >= 127))
+		if (str[i] < 32 || str[i] >= 127)
 		{
 			len += _puts("\\x");
-			result = convert_base(str[i], 16, 0);
+			reversed_arr = convert_base(str[i], 16, 0);
 
 			dig = str[i];
 
@@ -75,6 +71,7 @@ int p_str_np(va_list args)
 				len += _putchar('0');
 			}
 
+			result = reverse(reversed_arr);
 			len += _puts(result);
 		}
 		else

@@ -28,6 +28,8 @@ int _puts(char *str);
 
 char *convert_base(unsigned int num, int base, int case_type);
 
+char *reverse(char *str);
+
 int print_uns_num(unsigned int n);
 
 int hex_check(int num, char case_type);
