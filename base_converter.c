@@ -1,3 +1,4 @@
+#include "main.h"
 
 /**
  * convert_base - Converts character passed to hex
@@ -6,7 +7,7 @@
  * @base: Base to convert to
  * @case_type: If uppercase or lowercase
  *
- * Description: For @base_type 0 for uppercase, 1 for lowercase
+ * Description: For @case_type, input 0 for uppercase, 1 for lowercase
  *
  * Return: Hex value
  */
@@ -14,7 +15,10 @@ char *convert_base(unsigned int num, int base, int case_type)
 {
 	int i, rem;
 	static char hex_arr[256];
-	static char *ptr;
+	char *ptr = NULL;
+
+	if (num == 0)
+		return (ptr);
 
 	for (i = 0; num > 0; i++)
 	{
