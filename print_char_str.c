@@ -51,7 +51,7 @@ int p_str(va_list args)
  */
 int p_str_np(va_list args)
 {
-	int i, len;
+	int i, len = 0;
 	unsigned int dig;
 	char *str = va_arg(args, char *);
 	char *result;
