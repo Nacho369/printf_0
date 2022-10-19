@@ -65,7 +65,8 @@ int p_str_np(va_list args)
 	{
 		if (str[i]  > 0 && (str[i] < 32 || str[i] >= 127))
 		{
-			len += _puts("\\x");
+			_puts("\\x");
+			len++;
 			result = convert_base(str[i], 16, 0);
 
 			dig = str[i];
@@ -79,7 +80,6 @@ int p_str_np(va_list args)
 		}
 		else
 			len += _putchar(str[i]);
-
 	}
 
 	return (len);
